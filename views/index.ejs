@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To DO List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="day"> <%=day%></h1>
+   <div class="list">
+    <ul>
+        
+        <%for (let i=0;i<locals.newItem.length;i++){%>
+            <li>
+             <input type="checkbox" class="task-checkbox" id="task-<%=i%>">
+             <label for="task-<%=i%>"><%=newItem[i];%></label>
+             </li>
+        <% } %>
+    </ul>
+
+    <form action="/" method="post">
+        <input type="text" name="newItem" autocomplete="off" placeholder="Add new task">
+        <button type="submit">Add</button>
+    </form>
+   </div>
+   <script>
+    document.querySelectorAll('.task-checkbox').forEach((checkbox)=>{
+        checkbox.addEventListener('change',(event)=>{
+            const label=event.target.nextElementSibling;
+            if(event.target.checked){
+                label.classList.add('completed');
+            }
+            else{
+                label.classList.remove('completed');
+            }
+        });
+    });
+   </script>
+</body>
+</html>
